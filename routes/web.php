@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/gbook/index', 'MsgController@index')->name('index');
+Route::post('/gbook/save', 'MsgController@save')->name('save');
+
