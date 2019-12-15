@@ -6,9 +6,19 @@
         <h1 class="display-4">我的留言板</h1>
         <p class="lead">根据1024编程实验室做的入门程序，请大家鉴赏。</p>
     </div>
-    <form action="save.php" method='POST'>
+    <form action="{{route('save')}}" method='POST'>
+        @csrf
         <div class='row'>
             <div class='col-12'>
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
                 <div class="form-group">
                     <textarea id='content' name='content' class="form-control" rows='4'></textarea>
                     <script>
@@ -35,23 +45,17 @@
 
     <div class='row'>
         <div class='col-12'>
+            @foreach($msgs as $msg)
             <div class='border rounded p-2 mb-2'>
-                <div class='text-primary'>用户名</div>
-                <div>内容 </div>
+                <div class='text-primary'>{{$msg->username}}</div>
+                <div>{!! $msg->content !!}</div>
             </div>
+            @endforeach
         </div>
     </div>
     <div class='row'>
         <div class='col-12'>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="bootstrap.php?page=1">
-                            1
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+            {{ $msgs->links() }}
         </div>
     </div>
 </div>
