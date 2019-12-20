@@ -35,8 +35,8 @@ Route::prefix('admin')->group(function () {
             Route::get('/', 'Admin\AdminUserController@index')->name('admin.adminuser');
 
             //添加、编辑共用
-            Route::get('add', 'Admin\AdminUserController@add')->name('admin.adminuser.add');
-            Route::post('add', 'Admin\AdminUserController@save')->name('admin.adminuser.add');
+            Route::get('add/{adminuser?}', 'Admin\AdminUserController@add')->name('admin.adminuser.add');
+            Route::post('add/{adminuser?}', 'Admin\AdminUserController@save')->name('admin.adminuser.add');
 
             //软删除
             Route::get('remove/{adminuser}', 'Admin\AdminUserController@remove')->name('admin.adminuser.remove');

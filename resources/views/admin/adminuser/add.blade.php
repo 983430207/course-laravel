@@ -14,12 +14,17 @@
 @endpage_title
 <div class='row'>
     <div class='col-12'>
-        <form method='post' action='{{route("admin.adminuser.add")}}'>
+        <form method='post' action='{{route("admin.adminuser.add", [$adminuser->id] )}}'>
             @csrf
             <div class="form-group row">
                 <label class="col-2 col-form-label">用户名</label>
                 <div class="col-10">
-                    <input type="text" class="form-control" name='username' value='{{old("username")}}'>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        name='username' 
+                        value='{{old("username",$adminuser->username)}}'
+                    />
                     @error('username')
                     <small class="form-text text-danger">{{$message}}</small>
                     @enderror
