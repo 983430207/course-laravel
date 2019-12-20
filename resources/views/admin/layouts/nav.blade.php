@@ -31,10 +31,10 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
                 <a class="nav-link" href="#" tabindex="-1">
-                    <i class='fas fa-user-friends'></i> 管理员</a>
+                    <i class='fas fa-user-friends'></i> {{Auth::guard("admin")->user()->username}}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" tabindex="-1">退出</a>
+                <a class="nav-link" href="{{route('admin.logout')}}" tabindex="-1">退出</a>
             </li>
         </ul>
     </div>
