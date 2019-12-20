@@ -14,6 +14,6 @@ class LoginController extends Controller
 
     //登陆校验
     public function check(){
-
+        return 123;
     }
 }
