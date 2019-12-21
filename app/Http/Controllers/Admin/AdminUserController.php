@@ -57,12 +57,25 @@ class AdminUserController extends Controller
     }
 
     //移除
-    public function remove(){
-        
+    public function remove( AdminUser $adminuser ){
+        $adminuser->delete();
+        //跳转
+        alert('操作成功');
+        return back();        
     }
 
     //状态切换
-    public function state(){
-        
+    public function state( AdminUser $adminuser ){
+
+        //获取用户的反向状态
+        $new_state = ($adminuser->state == AdminUser::NORMAL) ? AdminUser::BAN : AdminUser::NORMAL;
+        //将新状态赋值给数据模型
+        $adminuser->state = $new_state;
+        //保存修改后的结果
+        $adminuser->save();
+
+        //跳转
+        alert('操作成功');
+        return back();
     }
 }
