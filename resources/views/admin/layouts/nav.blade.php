@@ -10,7 +10,7 @@
                 <i class='fas fa-cogs'></i> 系统设置</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" tabindex="-1">
+                <a class="nav-link" href="{{route('admin.adminuser')}}" tabindex="-1">
                 <i class='fas fa-user-shield'></i> 管理员</a>
             </li>
             <li class="nav-item">
