@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminUserRequest;
 use App\Models\AdminUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AdminUserController extends Controller
@@ -33,6 +34,9 @@ class AdminUserController extends Controller
     //保存
     public function save(AdminUserRequest $request, AdminUser $adminuser){
 
+        //超级管理员只能由本人操作
+        $this->authorizeForUser(Auth::guard('admin')->user(),'modify', $adminuser);
+
         $data = $request->validated();
 
         //添加和编辑模式的适配
@@ -58,6 +62,10 @@ class AdminUserController extends Controller
 
     //移除
     public function remove( AdminUser $adminuser ){
+        
+        //超级管理员禁止删除
+        $this->authorizeForUser(Auth::guard('admin')->user(),'remove', $adminuser);
+
         $adminuser->delete();
         //跳转
         alert('操作成功');
@@ -66,6 +74,9 @@ class AdminUserController extends Controller
 
     //状态切换
     public function state( AdminUser $adminuser ){
+
+        //超级管理员禁止切换状态
+        $this->authorizeForUser(Auth::guard('admin')->user(),'remove', $adminuser);
 
         //获取用户的反向状态
         $new_state = ($adminuser->state == AdminUser::NORMAL) ? AdminUser::BAN : AdminUser::NORMAL;
