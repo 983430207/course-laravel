@@ -10,3 +10,14 @@
 function alert($msg, $type='success'){
     session()->flash($type, $msg);
 }
+
+/**
+ * 获取指定key的数据库配置信息。
+ *
+ * @param [type] $key
+ * @return void
+ */
+function setting($key){
+    $data = app('App\Models\Setting')->kv();
+    return $data[$key];
+}
