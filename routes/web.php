@@ -25,6 +25,7 @@ Route::prefix('admin')->group(function () {
 
     //需要保护的后台路由列表
     Route::middleware(['adminLoginCheck'])->group(function () {
+        
         #后台中心的首页
         Route::get('index', 'Admin\IndexController@index')->name('admin.index');
 
@@ -43,5 +44,12 @@ Route::prefix('admin')->group(function () {
             //切换状态
             Route::get('state/{adminuser}', 'Admin\AdminUserController@state')->name('admin.adminuser.state');
         });
+
+        //系统设置模块
+        Route::prefix('setting')->group(function(){
+            Route::get('/','Admin\SettingController@index')->name('admin.setting');
+            Route::post('/','Admin\SettingController@save')->name('admin.setting');
+        });
+
     });
 });

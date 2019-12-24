@@ -6,7 +6,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#" tabindex="-1">
+                <a class="nav-link" href="{{route('admin.setting')}}" tabindex="-1">
                 <i class='fas fa-cogs'></i> 系统设置</a>
             </li>
             <li class="nav-item">
