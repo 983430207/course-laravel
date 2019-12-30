@@ -9,8 +9,11 @@ use App\Models\Resource;
 class ResourceController extends Controller
 {
     //
-    public function index(){
-        $data = [];
+    public function index(Resource $resource){
+        $resources = $resource->orderBy('id','desc')->paginate(setting("page_resource"));
+        $data = [
+            'resources' => $resources
+        ];
         return view('admin.resource.index', $data);
     }
 

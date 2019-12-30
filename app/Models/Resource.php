@@ -13,4 +13,15 @@ class Resource extends Model
 
     const VIDEO = 1;
     const DOC = 2;
+
+    //资源类型获取器
+    public function getTypeNameAttribute(){
+        return config('project.resource.type')[$this->type];
+    }
+
+    //反向一对多关联到用户
+    public function adminUser()
+    {
+        return $this->belongsTo('App\Models\AdminUser', 'adminuser_id');
+    }
 }
