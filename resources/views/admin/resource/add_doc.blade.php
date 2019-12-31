@@ -1,7 +1,7 @@
 <div class="form-group row">
     <label class="col-2 col-form-label">正文</label>
     <div class="col-10">
-        <textarea class="form-control" id='content' name='content'></textarea>
+        <textarea class="form-control" id='content' name='content'>{{old("content",$resource->doc->content??"")}}</textarea>
         @error('content')
         <small class="form-text text-danger">{{$message}}</small>
         @enderror

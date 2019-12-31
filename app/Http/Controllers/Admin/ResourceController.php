@@ -50,7 +50,8 @@ class ResourceController extends Controller
     //添加、编辑
     public function add(Request $request, Resource $resource){
 
-        $type = $request->input('type', null);
+        $type = $resource->id ? $resource->type : $request->input('type');
+        
         if(!$type){
             alert('请指定资源类型', 'danger');
             return redirect()->route('admin.resource');
@@ -58,6 +59,7 @@ class ResourceController extends Controller
 
         $data = [
             'type'  => $type,
+            'resource'  => $resource,
         ];
         return view('admin.resource.add', $data);
     }
@@ -80,7 +82,13 @@ class ResourceController extends Controller
                 default:
                     abort('403','无效的type类型');                                                
             }
-            $resource->create($data)->{$relation}()->create($data);
+            //根据添加、编辑模式，进行对应的数据操作
+            if($resource->id){
+                $resource->update($data);
+                $resource->{$relation}->update($data);
+            }else{
+                $resource->create($data)->{$relation}()->create($data);
+            }
         });
         alert('操作成功');
         return redirect()->route('admin.resource');         
