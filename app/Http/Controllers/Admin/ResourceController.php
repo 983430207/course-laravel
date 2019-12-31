@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ResourceWrite;
 use Illuminate\Http\Request;
 use App\Models\Resource;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 
 class ResourceController extends Controller
 {
@@ -59,8 +63,27 @@ class ResourceController extends Controller
     }
 
     //保存资源
-    public function save(Request $request, Resource $resource){
-
+    public function save(ResourceWrite $request, Resource $resource){
+        $data = $request->validated();
+        $data['adminuser_id'] = Auth::guard('admin')->id();
+        
+        DB::transaction(function ()use($resource, $data) {
+            
+            //根据资源类型，动态指定关联方法
+            switch($data['type']){
+                case \App\Models\Resource::VIDEO:
+                    $relation = 'video';
+                break;
+                case \App\Models\Resource::DOC:
+                    $relation = 'doc';
+                break;
+                default:
+                    abort('403','无效的type类型');                                                
+            }
+            $resource->create($data)->{$relation}()->create($data);
+        });
+        alert('操作成功');
+        return redirect()->route('admin.resource');         
     }
 
     //软删除移除资源
