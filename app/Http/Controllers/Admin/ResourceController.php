@@ -9,10 +9,36 @@ use App\Models\Resource;
 class ResourceController extends Controller
 {
     //
-    public function index(Resource $resource){
+    public function index(Resource $resource, Request $request){
+        
+        $resource = $resource->with('adminUser');
+
+        /**
+         * search 搜索对象
+         */
+        $search = new \stdClass;
+        $search->keyword = $request->input('keyword','');
+        $search->adminuser_id = $request->input('adminuser_id','');
+
+        $search->type = $request->input('type',null);
+
+        if( $search->keyword ){
+            $resource = $resource->where('title', 'like', "%{$search->keyword}%");
+        }
+
+        if( $search->adminuser_id ){
+            $resource = $resource->where('adminuser_id', $search->adminuser_id);
+        }
+
+        if( $search->type ){
+            $resource = $resource->whereIn('type', $search->type);
+        }
+
+
         $resources = $resource->orderBy('id','desc')->paginate(setting("page_resource"));
         $data = [
-            'resources' => $resources
+            'resources' => $resources,
+            'search'     => $search
         ];
         return view('admin.resource.index', $data);
     }
