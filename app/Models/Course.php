@@ -10,4 +10,16 @@ class Course extends Model
     //
     use SoftDeletes;
     protected $fillable = ['adminuser_id','title','desc','sort','image'];
+
+    /**
+     * 获取课程的封面图片，如果没有，返回默认图
+     *
+     * @return void
+     */
+    public function getImageLinkAttribute(){
+        if(empty($this->image)){
+            return asset('static/images/course-default.jpg');
+        }
+        return asset("storage/".$this->image);
+    }
 }
