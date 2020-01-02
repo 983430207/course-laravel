@@ -18,7 +18,7 @@
                 <i class='fas fa-database'></i> 课程资源</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" tabindex="-1">
+                <a class="nav-link" href="{{route('admin.course')}}" tabindex="-1">
                 <i class='fas fa-book'></i> 课程管理</a>
             </li>
             <li class="nav-item">
