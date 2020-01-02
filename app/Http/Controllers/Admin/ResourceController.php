@@ -97,7 +97,10 @@ class ResourceController extends Controller
 
     //软删除移除资源
     public function remove(Request $request, Resource $resource){
-
+        //此处应该做一个判断，资源如果被使用，则禁止删除
+        $resource->delete();
+        alert('操作成功');
+        return back();
     }
 
     //上传图片
