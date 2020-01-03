@@ -14,7 +14,7 @@
 <a href='{{route("admin.course.chapter.add", [$course->id])}}' class='btn btn-primary btn-sm'>添加章节</a>
 @endpage_title
 
-@foreach( $course->chapter()->get() as $chapter )
+@foreach( $course->chapter()->with('resource')->get() as $chapter )
 <div class='row  mt-2 mb-2'>
     <div class='col-12'>
         <div class='d-flex mb-2'>
@@ -29,21 +29,15 @@
     </div>
     <div class='col-12'>
         <table class="table table-sm">
+        @foreach($chapter->resource as $resource)
             <tr>
-                <th width='100'>资源ID</th>
-                <th width='100'>资源类型</th>
-                <td><a href="#">资源标题</a></td>
+                <th width='100'>{{$resource->id}}</th>
+                <th width='100'>{!!$resource->typeName!!}</th>
+                <td>
+                <a href="{{route('admin.resource.add', [$resource->id])}}">{{$resource->title}}</a>
+                </td>
             </tr>
-            <tr>
-                <th width='100'>资源ID</th>
-                <th width='100'>资源类型</th>
-                <td><a href="#">资源标题</a></td>
-            </tr>
-            <tr>
-                <th width='100'>资源ID</th>
-                <th width='100'>资源类型</th>
-                <td><a href="#">资源标题</a></td>
-            </tr>
+        @endforeach
         </table>
     </div>
 </div>

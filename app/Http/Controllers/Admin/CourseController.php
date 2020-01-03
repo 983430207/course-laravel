@@ -101,7 +101,7 @@ class CourseController extends Controller
     public function chapterRemove(Request $request,Course $course, Chapter $chapter){
         
         //要检查是否包含资源，如果有则禁止删除
-        
+
         $chapter->delete();
         alert('操作成功');
         return redirect()->route('admin.course.detail', [$course->id]);
@@ -109,10 +109,36 @@ class CourseController extends Controller
 
     //资源关联
     public function resourceAdd(Request $request, Course $course, Chapter $chapter){
-        $data = [];
+        $data = [
+            'course'    => $course,
+            'chapter'    => $chapter,
+        ];
         return view('admin.course.resource_add', $data);
     }
 
     //资源保存
-    public function resourceSave(Request $request, Course $course, Chapter $chapter){}
+    public function resourceSave(Request $request, Course $course, Chapter $chapter){
+        $resource_ids = $request->input('resource_id');
+        $sort = $request->input('sort');
+        
+        $post = [];
+        foreach($resource_ids as $key => $resource_id){
+
+            //资源id或排序id留空，表示删除该关联
+            if(!$resource_id || !$sort[$key]){
+                continue;
+            }
+
+            $post[ $resource_id ] = [
+                'sort'  => $sort[ $key ],
+            ];  
+        }
+
+        $chapter->resource()->sync($post);
+
+        alert('操作成功');
+        return redirect()->route('admin.course.resource.add', [$course->id, $chapter->id]);
+
+
+    }
 }
