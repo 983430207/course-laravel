@@ -22,7 +22,9 @@ class CourseController extends Controller
 
     //课程详细
     public function detail(Request $request, Course $course){
-        $data = [];
+        $data = [
+            'course'    => $course,
+        ];
         return view('admin.course.detail', $data);
     }
 
