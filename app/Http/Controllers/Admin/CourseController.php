@@ -68,6 +68,12 @@ class CourseController extends Controller
 
     //课程移除
     public function remove(Request $request, Course $course){
+
+        if( $course->chapter()->count() > 0 ){
+            alert('删除失败，请先删除旗下章节','danger');
+            return back();
+        }
+
         $course->delete();
         alert('操作成功');
         return back();
@@ -101,6 +107,10 @@ class CourseController extends Controller
     public function chapterRemove(Request $request,Course $course, Chapter $chapter){
         
         //要检查是否包含资源，如果有则禁止删除
+        if( $chapter->resource()->count() > 0 ){
+            alert('删除失败，请先删除旗下资源','danger');
+            return back();
+        }
 
         $chapter->delete();
         alert('操作成功');

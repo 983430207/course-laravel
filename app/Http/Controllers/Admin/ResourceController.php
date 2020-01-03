@@ -97,7 +97,12 @@ class ResourceController extends Controller
 
     //软删除移除资源
     public function remove(Request $request, Resource $resource){
+
         //此处应该做一个判断，资源如果被使用，则禁止删除
+        if( $resource->chapter()->count() > 0 ){
+            alert('删除失败，请先删除关联的章节','danger');
+            return back();
+        }   
         $resource->delete();
         alert('操作成功');
         return back();
