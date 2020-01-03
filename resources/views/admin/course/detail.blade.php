@@ -14,6 +14,10 @@
 <a href='{{route("admin.course.chapter.add", [$course->id])}}' class='btn btn-primary btn-sm'>添加章节</a>
 @endpage_title
 
+@if( $course->chapter()->count() < 1 )
+<p class='text-muted'>没有任何可用数据，请先添加章节</p>
+@endif
+
 @foreach( $course->chapter()->with('resource')->get() as $chapter )
 <div class='row  mt-2 mb-2'>
     <div class='col-12'>
