@@ -22,4 +22,11 @@ class Course extends Model
         }
         return asset("storage/".$this->image);
     }
+
+
+    //一对多关联到章节表
+    public function chapter()
+    {
+        return $this->hasMany('App\Models\Chapter')->orderBy('sort','asc');
+    }
 }

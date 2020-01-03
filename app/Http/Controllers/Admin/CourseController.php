@@ -98,7 +98,14 @@ class CourseController extends Controller
     }
 
     //章节移除
-    public function chapterRemove(Request $request,Course $course, Chapter $chapter){}
+    public function chapterRemove(Request $request,Course $course, Chapter $chapter){
+        
+        //要检查是否包含资源，如果有则禁止删除
+        
+        $chapter->delete();
+        alert('操作成功');
+        return redirect()->route('admin.course.detail', [$course->id]);
+    }
 
     //资源关联
     public function resourceAdd(Request $request, Course $course, Chapter $chapter){
