@@ -11,7 +11,10 @@ class FileController extends Controller
 {
     //展示配置表单
     public function index(File $fileModel){
-        $data = [];
+
+        $data = [
+            'files'  => $fileModel->orderBy('id','desc')->paginate(15)
+        ];
         return view('admin.file.index', $data);
     }
 
@@ -23,5 +26,22 @@ class FileController extends Controller
 
     //上传保存
     public function save(Request $request, File $fileModel){
+        if($request->hasFile('filename') && $request->file('filename')->isValid() ){
+
+            $file = $request->file('filename');
+            if( !in_array( $file->extension(), config('project.upload.files') ) ){
+                alert('不被允许的文件类型', 'danger');
+                return back();
+            }    
+            
+            //保存文件到指定位置
+            $filepath = $file->store('other','public');
+            $fileModel->saveFile( 'other_upload', $filepath, $file );
+            alert('上传成功');
+            return redirect()->route('admin.file'); 
+        }else{
+            alert('上传失败','danger');
+            return back();
+        }
     }
 }
