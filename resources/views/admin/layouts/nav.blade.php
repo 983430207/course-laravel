@@ -22,7 +22,7 @@
                 <i class='fas fa-book'></i> 课程管理</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" tabindex="-1">
+                <a class="nav-link" href="{{route('admin.file')}}" tabindex="-1">
                 <i class='fas fa-file-word'></i> 文件管理</a>
             </li>
         </ul>
