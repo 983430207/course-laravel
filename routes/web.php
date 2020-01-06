@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Index\IndexController@index')->name('index');
 
 //后台路由分组
 Route::prefix('admin')->group(function () {
