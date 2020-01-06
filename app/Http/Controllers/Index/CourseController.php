@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Index;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\Resource;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -15,5 +16,14 @@ class CourseController extends Controller
             'course'    => $course,
         ];
         return view('index.course.index', $data);
+    }
+
+    //课程阅读页
+    public function resource(Course $course, Resource $resource){
+        $data = [
+            'course'    => $course,
+            'resource'  => $resource,
+        ];
+        return view('index.course.resource', $data);
     }
 }

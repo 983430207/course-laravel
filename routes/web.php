@@ -16,6 +16,9 @@ Route::get('/', 'Index\IndexController@index')->name('index');
 Route::prefix('course')->group(function () {
     // 课程首页
     Route::get('/{course}', 'Index\CourseController@index')->name('course.index');
+    //课程阅读
+    Route::get('/{course}/{resource}', 'Index\CourseController@resource')->name('course.resource');
+
 });
 
 //后台路由分组

@@ -36,7 +36,8 @@
                 <div class="list-group">
                     @foreach($chapter->resource as $resource)
                     <div class="list-group-item list-group-item-action d-flex">
-                        {!!$resource->typeName!!} &nbsp;&nbsp;-&nbsp;&nbsp; <a href="#" title='{{$resource->desc}}'>
+                        {!!$resource->typeName!!} &nbsp;&nbsp;-&nbsp;&nbsp; 
+                        <a href="{{route('course.resource', [$course->id, $resource->id])}}" title='{{$resource->desc}}'>
                             {{$resource->title}}
                         </a>
                         <span class='ml-auto text-muted text-sm'>{{$resource->updated_at}}</span>
