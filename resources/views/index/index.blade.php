@@ -15,7 +15,7 @@
         <div class="media">
             <img class="mr-3 img-fluid rounded" style='width:200px;' src="{{$course->image_link}}">
             <div class="media-body">
-                <h5 class="mt-0"><a href='#'>{!!$course->title!!}</a></h5>
+                <h5 class="mt-0"><a href='{{route("course.index",[$course->id])}}'>{!!$course->title!!}</a></h5>
                 <p class='text-muted'>{!!$course->desc!!}</p>
             </div>
         </div>

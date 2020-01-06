@@ -13,6 +13,11 @@
 
 Route::get('/', 'Index\IndexController@index')->name('index');
 
+Route::prefix('course')->group(function () {
+    // 课程首页
+    Route::get('/{course}', 'Index\CourseController@index')->name('course.index');
+});
+
 //后台路由分组
 Route::prefix('admin')->group(function () {
 
