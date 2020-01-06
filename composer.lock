@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c436128b9d8f051b96e65d4109ee0334",
+    "content-hash": "52894f3ff06641dbf73686e73ba4b10d",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -644,6 +644,89 @@
             ],
             "description": "Highlight PHP code in terminal",
             "time": "2018-09-29T18:48:56+00:00"
+        },
+        {
+            "name": "jiajialu/aliyun-sdk-core",
+            "version": "1.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://gitee.com/jiajialu/aliyun-sdk-core",
+                "reference": "9a76a3411c1f27ef9318cb0823b6f76214ef9126"
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=4.8 < 6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AliCloud\\Core\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alu",
+                    "email": "alu@xdreport.com",
+                    "homepage": "https://gitee.com/jiajialu"
+                }
+            ],
+            "description": "aliyun-php-sdk-core 封装，支持composer方式使用",
+            "homepage": "https://gitee.com/jiajialu/aliyun-sdk-core",
+            "keywords": [
+                "alicloud",
+                "aliyun",
+                "core",
+                "sdk"
+            ],
+            "time": "2018-12-06T08:36:23+00:00"
+        },
+        {
+            "name": "jiajialu/aliyun-sdk-vod",
+            "version": "2.11.8",
+            "source": {
+                "type": "git",
+                "url": "https://gitee.com/jiajialu/aliyun-sdk-vod",
+                "reference": "acbd2a301fb69f30b2b2b0ef12b49632c3a0ebd8"
+            },
+            "require": {
+                "jiajialu/aliyun-sdk-core": "^1.0",
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=4.8 < 6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AliCloud\\Vod\\": "src/Request/V20170321"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alu",
+                    "email": "alu@xdreport.com",
+                    "homepage": "https://gitee.com/jiajialu"
+                }
+            ],
+            "description": "aliyun-php-sdk-vod 封装，支持composer方式使用",
+            "homepage": "https://gitee.com/jiajialu/aliyun-sdk-vod",
+            "keywords": [
+                "alicloud",
+                "aliyun",
+                "sdk",
+                "vod"
+            ],
+            "time": "2018-12-06T08:50:54+00:00"
         },
         {
             "name": "laravel/framework",
