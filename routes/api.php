@@ -24,4 +24,5 @@ Route::prefix('v1')->name('api.v1.')->namespace("Api")->group(function(){
     })->name('test');    
 
     Route::post('login', '\App\Http\Controllers\Admin\LoginController@check')->name('login');
+    Route::get('courses', '\App\Http\Controllers\Api\CourseController@index')->name('courses');
 });
