@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Course extends JsonResource
+class ResourceDoc extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,8 +15,6 @@ class Course extends JsonResource
     public function toArray($request)
     {
         $data = parent::toArray($request);
-        $data['image_link'] = $this->image_link;
-        $data['chapters'] = Chapter::collection($this->whenLoaded('chapter'));
         return $data;
     }
 }
