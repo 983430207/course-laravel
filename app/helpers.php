@@ -1,5 +1,7 @@
 <?php
 
+use App\Exceptions\ApiException;
+use App\Exceptions\ExceptionCode;
 
 /**
  * 弹出信息提示框
@@ -20,4 +22,16 @@ function alert($msg, $type='success'){
 function setting($key){
     $data = app('App\Models\Setting')->kv();
     return $data[$key];
+}
+/**
+ * API抛出异常的辅助函数
+ *
+ * @param [type] $message
+ * @param [type] $code
+ * @param array $data
+ * @param integer $statusCode
+ * @return void
+ */
+function apiErr($message, $code=ExceptionCode::ERROR, $data=[], $statusCode=400){
+    throw new ApiException($message, $code, $data, $statusCode);
 }
