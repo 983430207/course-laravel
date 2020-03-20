@@ -25,8 +25,16 @@ class CourseController extends Controller
     //资源信息
     public function resource(Course $course, AppResource $resource){
         //预加载关联表，否则不会加载
-        $resource->load('video');
-        $resource->load('doc');
+        switch($resource->type){
+            case AppResource::VIDEO:
+                $resource->load('video');
+            break;
+            case AppResource::Doc:
+                $resource->load('doc');
+            break;
+            
+        }
+        
         $course_ids = $resource->chapter()->get()->keyBy('course_id')->keys();
         if( $course_ids->search( $course->id ) === false ){
             apiErr('越权访问');
