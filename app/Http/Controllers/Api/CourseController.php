@@ -29,7 +29,7 @@ class CourseController extends Controller
             case AppResource::VIDEO:
                 $resource->load('video');
             break;
-            case AppResource::Doc:
+            case AppResource::DOC:
                 $resource->load('doc');
             break;
             
