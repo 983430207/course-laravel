@@ -26,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Schema::defaultStringLength(191);
         //页头组件
         Blade::component('admin.components.page_title', 'page_title');
     }
